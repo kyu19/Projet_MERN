@@ -1,9 +1,10 @@
 import express, { Express, Request, Response} from 'express'
-
+// import Film, {IFilm} from './models/Film'
+import FilmRoutes from './routes/filmRoutes'
+import RealisateurRoutes from './routes/directorRoutes'
+import SeanceRoutes from './routes/sessionRoutes'
 
 const app: Express = express()
-
-
 
 import mongoose from 'mongoose'
 const uri = "mongodb+srv://mern:mern@cluster0.ofjlexz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -22,52 +23,19 @@ async function run() {
 }
 run().catch(console.dir);
 
-// const Schema = mongoose.Schema;
+
+app.use(express.json())
+app.use('/api/films', FilmRoutes)
+app.use('/api/directors', RealisateurRoutes)
+app.use('/api/sessions', SeanceRoutes)
 
 
+const PORT = 3000
 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
 
-
-// const monSchema = new Schema({
-//     nom: String,
-//     age : String,
-//     email: { type: String, unique: true }
-
-// })
-
-
-// const monmodele = mongoose.model('banane', monSchema)
-
-// let doc = new monmodele({nom : "bob"})
-// doc.save()
-
-// let doc = new monmodele({nom : 'pierre', prenom : 'rip', email : 'ttt@gmail.com'})
-// doc.save()
-
-
-// monmodele.updateOne({nom : 'pierre'}, {email: 'pierre@gmail.com'});
-
-// let doc = new monmodele({ nom: 'Alice', age: 25, email: 'alice@example.com' });
-// doc.save();
-
-// monmodele.updateOne({ nom: 'Alice' }, { age: 26 }, {});
-
-// monmodele.find({ age: { $gte: 18 } }, function(err, docs) {});
-
-
-
-
-
-// const PORT = 3002
-
-// app.use(express.json())
-// app.use('/api/livres', livreRoutes)
-// app.use('/api/auteurs', auteurRoutes)
-
-
-// app.listen(PORT, () => {
-//     console.log(`Server running on port ${PORT}`)
-// })
 
 
 

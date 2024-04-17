@@ -1,49 +1,48 @@
 import {Router, Request, Response} from 'express'
-import Director, {IDirector} from '../models/Realisateur'
+import Film, {IFilm} from '../models/Film'
 
 const router = Router();
 
 
-let directors: IDirector[] = []
+let films: IFilm[] = []
 
 
-router.get('/', (req: Request, res: Response) => {
-    
-})
+router.post('/', async (req: Request, res: Response) => {
+    const film = new Film(req.body);
+    await film.save();
+    res.status(201).send(film);
+});
 
+router.get('/', async (req: Request, res: Response) => {
+    const films = await Film.find();
+    res.send(films);
+});
 
+router.get('/:id', async (req: Request, res: Response) => {
+    const film = await Film.findById(req.params.id);
+    if (!film) {
+    res.status(404).send('Film not found');
+    } else {
+    res.send(film);
+    }
+});
 
+router.put('/:id', async (req: Request, res: Response) => {
+    const film = await Film.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!film) {
+    res.status(404).send('Film not found');
+    } else {
+    res.send(film);
+    }
+});
 
-
-
-
-
-// router.get('/:id', (req: Request, res: Response) => {
-//       const livre = livres.find(l => l.id === parseInt(req.params.id))
-//       if (!livre) return res.status(404).json({message: 'livre non trouvé'})
-//       res.status(200).json(livre)
-// })
-
-
-router.post('/', (req: Request, res: Response) => {
-    const livre = req.body
-    directors.push(livre)
-    res.status(201).json(livre)
-})
-
-
-router.put('/:id', (req: Request, res: Response) => {
-    const index = directors.findIndex(l => l.id === parseInt(req.params.id))
-    if (index === -1) return res.status(404).json({message: 'livre non trouvé'})
-    directors.splice(index, 1, req.body)
-})
-
-
-router.delete('/:id', (req: Request, res: Response) => {
-    const index = directors.findIndex(l => l.id === parseInt(req.params.id))
-    if (index === -1) return res.status(404).json({message: 'livre non trouvé'})
-    directors.splice(index, 1)
-})
-
+router.delete('/:id', async (req: Request, res: Response) => {
+    const film = await Film.findByIdAndDelete(req.params.id);
+    if (!film) {
+    res.status(404).send('Film not found');
+    } else {
+    res.status(204).send();
+    }
+});
 
 export default router

@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { IDirector } from "./Realisateur"
+import { IDirector } from "./Director"
 
 export interface IFilm {
     title: string,
@@ -8,7 +8,18 @@ export interface IFilm {
     directors: IDirector[]
 }
 
+const FilmSchema = new mongoose.Schema<IFilm>({
+    title: String,
+    releaseYear: Number,
+    genre: String,
+    directors: [{
+      name: String,
+      birthDate: Date,
+      biography: String
+    }]
+  });
 
-const Film = mongoose.model('Film')
+const Film = mongoose.model<IFilm>('Film', FilmSchema);
+
 
 export default Film

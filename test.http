@@ -1,1 +1,109 @@
-# GET localhost:5000
+
+### Voir tous les films
+GET http://localhost:3000/api/films/
+
+
+
+### Créer un film
+POST http://localhost:3000/api/films/
+content-type: application/json
+
+{
+
+    "title": "Titanic",
+    "releaseYear": 2024,
+    "genre": "Drame",
+    "directors": [{
+        "name": "Pedro",
+        "birthDate": "05/04/2000",
+        "biography": "un chien pas comme les autres"
+    }]
+
+}
+
+### Modifier un film selon son id
+PUT http://localhost:3000/api/films/662055ee92913f5ae69f7b05
+content-type: application/json
+
+{
+
+    "title": "Titanic",
+    "releaseYear": 1993,
+    "genre": "Drame",
+    "directors": [{
+        "name": "Pedro",
+        "birthDate": "05/04/2000",
+        "biography": "un chien pas comme les autres"
+    }]
+
+}
+
+### Delete un film selon son id
+DELETE http://localhost:3000/api/films/662055aa66b0594bded90102
+
+
+### Voir toutes les sessions
+GET http://localhost:3000/api/sessions/
+
+
+### Créer une session
+POST http://localhost:3000/api/sessions/
+content-type: application/json
+
+{
+
+    "film": "662055ee92913f5ae69f7b05",
+    "date": "01/05/2000",
+    "time": "19:00",
+    "availableSeats": 15
+
+}
+
+### Modifier une session selon son id
+PUT http://localhost:3000/api/sessions/66205ab29a5365a8aece6cea
+content-type: application/json
+
+{
+
+    "film": "662055ee92913f5ae69f7b05",
+    "date": "01/05/2000",
+    "time": "15:00",
+    "availableSeats": 25
+
+}
+
+### Delete une session selon son id
+DELETE http://localhost:3000/api/sessions/66205a51c34db448bcc0664b
+
+
+### Voir toutes les directors
+GET http://localhost:3000/api/directors/
+
+
+### Créer un director
+POST http://localhost:3000/api/directors/
+content-type: application/json
+
+{
+
+    "name": "Vladimir président",
+    "birthDate": "07/10/1952",
+    "biography": "Moi l'Ukraine je la prends je l'enterre"
+
+}
+
+### Modifier un director selon son id
+PUT http://localhost:3000/api/directors/66205ea8a76e74688705d4b8
+content-type: application/json
+
+{
+
+    "name": "Vladimir président",
+    "birthDate": "07/10/1952",
+    "biography": "Moi l'Ukraine je la prends tout seul"
+
+}
+
+### Delete un director selon son id
+DELETE http://localhost:3000/api/directors/66205ea8a76e74688705d4b8
+
