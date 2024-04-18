@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 // import Film, {IFilm} from './models/Film'
-const filmRoutes_1 = __importDefault(require("./routes/filmRoutes"));
+const FilmRoutes_1 = __importDefault(require("./routes/FilmRoutes"));
 const directorRoutes_1 = __importDefault(require("./routes/directorRoutes"));
 const sessionRoutes_1 = __importDefault(require("./routes/sessionRoutes"));
 const app = (0, express_1.default)();
@@ -35,7 +35,7 @@ function run() {
 }
 run().catch(console.dir);
 app.use(express_1.default.json());
-app.use('/api/films', filmRoutes_1.default);
+app.use('/api/films', FilmRoutes_1.default);
 app.use('/api/directors', directorRoutes_1.default);
 app.use('/api/sessions', sessionRoutes_1.default);
 const PORT = 3000;

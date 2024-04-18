@@ -1,6 +1,6 @@
 import express, { Express, Request, Response} from 'express'
 // import Film, {IFilm} from './models/Film'
-import FilmRoutes from './routes/filmRoutes'
+import FilmRoutes from './routes/FilmRoutes'
 import RealisateurRoutes from './routes/directorRoutes'
 import SeanceRoutes from './routes/sessionRoutes'
 
